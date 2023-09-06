@@ -38,7 +38,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/alpine-novnc
+            ${{ secrets.DOCKERHUB_USERNAME }}/alpine-xfce4-novnc
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v3
@@ -46,7 +46,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7 #,linux/arm/v6, linux/386, linux/ppc64le,linux/s390x
           push: true
-          tags: xfce4-${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/alpine-novnc:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/alpine-novnc:buildcache,mode=max
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/alpine-xfce4-novnc:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/alpine-xfce4-novnc:buildcache,mode=max
