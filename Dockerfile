@@ -30,9 +30,10 @@ RUN mkdir -p /home/alpine/.vnc \
 
 USER root
 
-RUN echo '\
+RUN echo 'geometry=1400x720' > /etc/tigervnc/vncserver-config-geometry
+    && echo '\
 #!/bin/bash \
-/usr/bin/vncserver :99 -geometry 1400x720 2>&1 | sed  "s/^/[Xtigervnc ] /" & \
+/usr/bin/vncserver :99 2>&1 | sed  "s/^/[Xtigervnc ] /" & \
 sleep 1 & \
 /usr/bin/pulseaudio 2>&1 | sed  "s/^/[pulseaudio] /" & \
 sleep 1 & \
