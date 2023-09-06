@@ -38,7 +38,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/alpine-novnc
+            ${{ secrets.DOCKERHUB_USERNAME }}/alpine-novnc:xfce4
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v3
